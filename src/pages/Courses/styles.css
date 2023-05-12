@@ -1,0 +1,11 @@
+.searchContainer {
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.buttonsContainer {
+  margin-left: 2rem;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-end;
+}

@@ -1,20 +1,25 @@
-import { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Table } from "../../components/Table"
 import { Title } from "../../components/Title"
+import { Input } from "../../components/Input"
+import './styles.css'
+import { Button } from "../../components/Button"
+import { getCourses } from "../../api/courses"
 
 export const CoursesPage = () => {
+  const [allCourses, setAllCourses] = useState([])
   const [courses, setCourses] = useState([])
   const [search, setSearch] = useState('')
 
   const handleLoadCourses = async () => {
-    const res = await fetch('https://6348cc5ea59874146b110e79.mockapi.io/courses')
-    const data = await res.json()
+    const data = await getCourses()
 
     setCourses(data)
+    setAllCourses(data)
   }
 
   const handleFilterCourses = () => {
-    const newCourses = courses.filter((course) => {
+    const newCourses = allCourses.filter((course) => {
       return course.title.includes(search)
     })
 
@@ -25,20 +30,39 @@ export const CoursesPage = () => {
     setSearch(event.target.value)
   }
 
+  const handleResetFilter = () => {
+    setSearch('')
+  }
+
   useEffect(() => {
     handleLoadCourses()
-  }, [search])
+  }, [])
 
   return (
-    <main className="pageContainer">
+    <>
       <Title text='Tabela de cursos' />
 
-      <label htmlFor="search">Buscar</label>
-      <input name="search" type="text" value={search} onChange={handleChangeSearch} />
+      <div className="searchContainer">
+        <Input
+          name='search'
+          label='Busca'
+          value={search}
+          onChange={handleChangeSearch}
+        />
 
-      <button onClick={handleFilterCourses}>Filtrar</button>
+        <div className="buttonsContainer">
+          <Button
+            onClick={handleFilterCourses}
+          >
+            Filtrar
+          </Button>
 
+          <Button onClick={handleResetFilter} secondary>
+            Reset
+          </Button>
+        </div>
+      </div>
       <Table courses={courses} />
-    </main>
+    </>
   )
 }
