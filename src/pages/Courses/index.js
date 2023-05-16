@@ -4,7 +4,7 @@ import { Title } from "../../components/Title"
 import { Input } from "../../components/Input"
 import './styles.css'
 import { Button } from "../../components/Button"
-import { getCourses } from "../../api/courses"
+import { deleteCourse, getCourses } from "../../api/courses"
 
 export const CoursesPage = () => {
   const [allCourses, setAllCourses] = useState([])
@@ -12,10 +12,10 @@ export const CoursesPage = () => {
   const [search, setSearch] = useState('')
 
   const handleLoadCourses = async () => {
-    const data = await getCourses()
+    const response = await getCourses()
 
-    setCourses(data)
-    setAllCourses(data)
+    setCourses(response.data)
+    setAllCourses(response.data)
   }
 
   const handleFilterCourses = () => {
@@ -32,6 +32,14 @@ export const CoursesPage = () => {
 
   const handleResetFilter = () => {
     setSearch('')
+  }
+
+  const handleDeleteCourse = async (course) => {
+    console.log('Deletar curso')
+    console.log(course)
+
+    await deleteCourse(course.id)
+    await handleLoadCourses()
   }
 
   useEffect(() => {
@@ -62,7 +70,7 @@ export const CoursesPage = () => {
           </Button>
         </div>
       </div>
-      <Table courses={courses} />
+      <Table courses={courses} onDelete={handleDeleteCourse} />
     </>
   )
 }

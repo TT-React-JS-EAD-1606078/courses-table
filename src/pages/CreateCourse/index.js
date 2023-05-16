@@ -4,13 +4,16 @@ import './styles.css'
 import { Input } from '../../components/Input'
 import { Button } from '../../components/Button'
 import { createCourse } from '../../api/courses'
+import { useNavigate, useParams } from 'react-router-dom'
 
 export const CreateCoursePage = () => {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [instructor, setInstructor] = useState('')
+  const navigate = useNavigate()
+  const { id } = useParams()
 
-
+  console.log(id)
 
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -22,14 +25,17 @@ export const CreateCoursePage = () => {
     };
 
     await createCourse(newCourse)
+
+    // Navegar para pagina de listagem
+    navigate('/')
   }
 
   return (
     <>
-      <Title text='Criar curso' />
+      <Title text={id ? 'Editar curso' : 'Criar curso'} />
 
       <div className='formContainer'>
-        <form onSubmit={handleSubmit} >
+        <form onSubmit={handleSubmit}>
           <div className='inputsContainer'>
             <Input
               label='Titulo do curso'

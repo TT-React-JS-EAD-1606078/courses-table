@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import { Button } from "../Button"
 import './styles.css'
 
@@ -7,9 +8,13 @@ export const Header = () => {
       <p className="title">Gerenciamento de cursos</p>
 
       <div className="headerButtonsContainer">
-        <Button>Listagem de cursos</Button>
+        <Link to='/'>
+          <Button>Listagem de cursos</Button>
+        </Link>
 
-        <Button secondary>Cadastrar curso</Button>
+        <Link to='/courses/create'>
+          <Button secondary>Cadastrar curso</Button>
+        </Link>
       </div>
     </div>
   )

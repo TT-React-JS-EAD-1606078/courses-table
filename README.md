@@ -23,3 +23,21 @@
 - Campos de Input com validação de obrigatoriedade
 - POST em uma api, mandando JSON para ela
 - Estrutura de requests para api, separando-as de acordo com a responsabilidade
+
+# Aula 6
+
+- Axios
+  - Instalação
+  - Configuração de uma instância axios
+    - baseURL
+  - Métodos HTTP com axios
+  - Trabalhos que não precisamos fazer, pois o próprio axios já lida
+  - Diferença da resposta do axios para a fetch api do JS
+- Separação de responsabilidades: comunicação com api, páginas, componentes e rotas.
+- React Router
+  - Instalação
+  - BrowserRouter, Routes e Route
+  - Criação das páginas
+  - Transição entre páginas com Link
+  - Transição entre páginas com useNavigate
+  - Parâmetros dinâmicos para rotas com useParams

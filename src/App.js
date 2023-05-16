@@ -1,16 +1,8 @@
-import { Header } from "./components/Header";
-import { CoursesPage } from "./pages/Courses";
-import { CreateCoursePage } from "./pages/CreateCourse";
+import { AppRoutes } from "./routes";
 
 function App() {
   return (
-    <>
-      <Header />
-
-      <main className="pageContainer">
-        <CreateCoursePage />
-      </main>
-    </>
+    <AppRoutes />
   );
 }
 
