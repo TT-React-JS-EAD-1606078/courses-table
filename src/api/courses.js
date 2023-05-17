@@ -38,6 +38,11 @@ export const deleteCourse = async (id) => {
   await api.delete(`/courses/${id}`)
 }
 
+export const getCourseDetails = id => api.get(`/courses/${id}`)
+
+export const editCourse = (id, data) => api.put(`/courses/${id}`, data)
+
+// [GET] - https://6348cc5ea59874146b110e79.mockapi.io/courses
 // [PUT] - https://6348cc5ea59874146b110e79.mockapi.io/courses
 // [DELETE] - https://6348cc5ea59874146b110e79.mockapi.io/courses
 // [PATCH] - https://6348cc5ea59874146b110e79.mockapi.io/courses

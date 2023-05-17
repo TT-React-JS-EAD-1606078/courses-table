@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { Button } from '../Button'
 import './styles.css'
 
-export const Table = ({ courses, onDelete }) => {
+export const Table = ({ courses, onDelete, courseDeletedId }) => {
   return (
     <table>
       <thead>
@@ -34,7 +34,12 @@ export const Table = ({ courses, onDelete }) => {
               <td>{course.instructor}</td>
 
               <td>
-                <Button onClick={() => onDelete(course)}>Deletar</Button>
+                <Button
+                  onClick={() => onDelete(course)}
+                  isLoading={courseDeletedId === course.id}
+                >
+                  Deletar
+                </Button>
               </td>
 
               <td>

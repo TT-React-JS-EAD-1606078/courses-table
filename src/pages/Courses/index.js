@@ -5,25 +5,37 @@ import { Input } from "../../components/Input"
 import './styles.css'
 import { Button } from "../../components/Button"
 import { deleteCourse, getCourses } from "../../api/courses"
+import { Loading } from "../../components/Loading"
 
 export const CoursesPage = () => {
   const [allCourses, setAllCourses] = useState([])
   const [courses, setCourses] = useState([])
   const [search, setSearch] = useState('')
+  const [isLoading, setIsLoading] = useState(true)
+  const [courseDeletedId, setCourseDeletedId] = useState(false)
 
   const handleLoadCourses = async () => {
     const response = await getCourses()
 
     setCourses(response.data)
     setAllCourses(response.data)
+
+    setIsLoading(false)
   }
 
   const handleFilterCourses = () => {
+    setIsLoading(true)
+
     const newCourses = allCourses.filter((course) => {
+      console.log(search)
       return course.title.includes(search)
     })
 
     setCourses(newCourses)
+
+    setTimeout(() => {
+      setIsLoading(false)
+    }, 2000)
   }
 
   const handleChangeSearch = (event) => {
@@ -32,14 +44,19 @@ export const CoursesPage = () => {
 
   const handleResetFilter = () => {
     setSearch('')
+    setCourses(allCourses)
   }
 
   const handleDeleteCourse = async (course) => {
     console.log('Deletar curso')
     console.log(course)
 
+    setCourseDeletedId(course.id)
+
     await deleteCourse(course.id)
     await handleLoadCourses()
+
+    setCourseDeletedId(false)
   }
 
   useEffect(() => {
@@ -70,7 +87,16 @@ export const CoursesPage = () => {
           </Button>
         </div>
       </div>
-      <Table courses={courses} onDelete={handleDeleteCourse} />
+
+      {
+        isLoading
+          ? <Loading />
+          : <Table
+            courses={courses}
+            onDelete={handleDeleteCourse}
+            courseDeletedId={courseDeletedId}
+          />
+      }
     </>
   )
 }

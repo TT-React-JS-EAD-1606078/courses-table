@@ -1,9 +1,9 @@
 import './styles.css'
 
-export const Button = ({ children, secondary, ...props }) => {
+export const Button = ({ children, secondary, isLoading, ...props }) => {
   return (
     <button {...props} className={secondary ? 'buttonSecondary' : 'button'}>
-      {children}
+      {isLoading ? 'Carregando...' : children}
     </button>
   )
 }

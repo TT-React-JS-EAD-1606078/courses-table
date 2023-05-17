@@ -41,3 +41,25 @@
   - Transição entre páginas com Link
   - Transição entre páginas com useNavigate
   - Parâmetros dinâmicos para rotas com useParams
+
+# Aula 7
+
+- Edição de cursos
+- Condicionais dentro do JSX
+- Criação de um componente de Loading
+- Fazer botão aceitar estado de carregamento
+- Inserimos uma mensagem de carregamento nas seguintes situações
+  - Carregando os detalhes de um curso
+  - Estado de salvando/editando um curso
+  - Carregando a listagem de cursos
+  - Deletando um curso
+- Requisição de detalhes de curso (GET)
+- Requisição de atualização de curso (PUT)
+- Iniciado uma nova aplicação de Blog
+- Clean up da aplicação de blog
+- Instalação das bibliotecas já conhecidas
+- Overview sobre styled-components
+  - Instalação
+  - Como criar um componente estilizado
+  - Como utilizar o componente estilizado
+  - Estilos globais
